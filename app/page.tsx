@@ -9,6 +9,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useOnboardingStore } from "./onboarding/hooks/useOnboardingStore";
 
 type Slide = {
   id: string;
@@ -137,12 +138,15 @@ export default function EnterpriseLoginExactLikeMock() {
     return () => window.clearInterval(id);
   }, [active, slides.length, go]);
 
+  const { updateData } = useOnboardingStore();
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isSubmitting) return;
     setIsSubmitting(true);
     try {
       console.log("Enterprise email:", email);
+      updateData({ email: email.trim() });
       await new Promise<void>((resolve) => {
         submitTimerRef.current = window.setTimeout(
           () => resolve(),
