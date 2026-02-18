@@ -231,7 +231,7 @@ export default function EnterpriseLoginExactLikeMock() {
                 </button>
               </div>
 
-              <Link href="/" className="text-sm text-white/90 hover:text-white">
+              <Link href="https://www.celerey.co" className="text-sm text-white/90 hover:text-white">
                 Learn more →
               </Link>
             </div>
