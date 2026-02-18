@@ -153,7 +153,7 @@ export default function EnterpriseLoginExactLikeMock() {
           PROCESSING_MS,
         );
       });
-      router.push("/onbaording");
+      router.push("/onboarding");
     } finally {
       setIsSubmitting(false);
     }
@@ -173,7 +173,7 @@ export default function EnterpriseLoginExactLikeMock() {
     <div className="min-h-screen flex justify-center items-center bg-muted/40 px-4 py-5 md:px-7 md:py-8">
       <div className="mx-auto w-full max-w-6xl rounded-[28px] bg-background shadow-sm ring-1 ring-border">
         {/* height tuned to look like your reference, not overly tall */}
-        <div className="grid h-[760px] grid-cols-1 gap-0 md:grid-cols-2">
+        <div className="grid h-190 grid-cols-1 gap-0 md:grid-cols-2">
           {/* LEFT */}
           <section className="relative m-4 overflow-hidden rounded-[22px] bg-black md:m-5 hidden md:block">
             {/* ONE animated layer for image + text => always in sync */}
@@ -190,7 +190,7 @@ export default function EnterpriseLoginExactLikeMock() {
                 sizes="(max-width: 768px) 100vw, 55vw"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
 
               <div className="absolute inset-x-6 bottom-20 z-10 text-white">
                 <p className="max-w-xl text-3xl font-semibold leading-tight md:text-[40px] md:leading-[1.05]">
