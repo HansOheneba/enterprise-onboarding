@@ -144,7 +144,10 @@ export default function EnterpriseLoginExactLikeMock() {
     try {
       console.log("Enterprise email:", email);
       await new Promise<void>((resolve) => {
-        submitTimerRef.current = window.setTimeout(() => resolve(), PROCESSING_MS);
+        submitTimerRef.current = window.setTimeout(
+          () => resolve(),
+          PROCESSING_MS,
+        );
       });
       router.push("/onbaording");
     } finally {
