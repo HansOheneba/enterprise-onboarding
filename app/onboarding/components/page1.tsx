@@ -64,9 +64,9 @@ const formatNumberWithCommas = (value: string | number): string => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-// Helper function to remove commas from input
+// Helper function to remove all non-numeric characters from input
 const removeCommas = (value: string): string => {
-  return value.replace(/,/g, '');
+  return value.replace(/[^0-9]/g, '');
 };
 
 export function FinancialMOTPage() {
@@ -181,7 +181,7 @@ export function FinancialMOTPage() {
           Financial Health Assessment
         </h1>
         <p className="mt-2 text-sm text-neutral-600 sm:text-base">
-          Let's understand your current financial situation
+          {"Let's understand your current financial situation"}
         </p>
       </div>
 
@@ -243,6 +243,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="monthlyIncome"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.monthlyIncome || '')}
                   onChange={(e) => updateData({ monthlyIncome: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -265,6 +266,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="monthlyExpenses"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.monthlyExpenses || '')}
                   onChange={(e) => updateData({ monthlyExpenses: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -297,6 +299,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="cashSavings"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.cashSavings || '')}
                   onChange={(e) => updateData({ cashSavings: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -316,6 +319,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="investmentPortfolio"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.investmentPortfolio || '')}
                   onChange={(e) => updateData({ investmentPortfolio: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -335,6 +339,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="retirementAccounts"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.retirementAccounts || '')}
                   onChange={(e) => updateData({ retirementAccounts: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -354,6 +359,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="realEstateValue"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.realEstateValue || '')}
                   onChange={(e) => updateData({ realEstateValue: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -373,6 +379,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="otherAssets"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.otherAssets || '')}
                   onChange={(e) => updateData({ otherAssets: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -402,6 +409,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="mortgageDebt"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.mortgageDebt || '')}
                   onChange={(e) => updateData({ mortgageDebt: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -421,6 +429,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="studentLoans"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.studentLoans || '')}
                   onChange={(e) => updateData({ studentLoans: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -440,6 +449,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="creditCardDebt"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.creditCardDebt || '')}
                   onChange={(e) => updateData({ creditCardDebt: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"
@@ -459,6 +469,7 @@ export function FinancialMOTPage() {
                 <Input
                   id="personalLoans"
                   type="text"
+                  inputMode="numeric"
                   value={formatNumberWithCommas(data.personalLoans || '')}
                   onChange={(e) => updateData({ personalLoans: removeCommas(e.target.value) })}
                   className="h-12 rounded-xl border-black/10 bg-white pl-8"

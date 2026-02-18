@@ -1,8 +1,8 @@
 // app/onboarding/hooks/useOnboardingStore.ts
 "use client";
 
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export interface OnboardingData {
   // Personal Information (from BeginJourneyModal)
@@ -12,43 +12,43 @@ export interface OnboardingData {
   phone: string;
   timeZone: string;
   agree: boolean;
-  userId ?: string;
+  userId?: string;
   dateOfBirth?: string;
   citizenship?: string;
   gender?: string;
   maritalStatus?: string;
   dependents?: number;
-  
+
   // Financial MOT Data - UPDATED
   // Income & Expenses
   primaryIncomeSource?: string;
   monthlyIncome?: string;
   monthlyExpenses?: string;
-  
+
   // Assets
   cashSavings?: string;
   investmentPortfolio?: string;
   retirementAccounts?: string;
   realEstateValue?: string;
   otherAssets?: string;
-  
+
   // Liabilities
   mortgageDebt?: string;
   studentLoans?: string;
   creditCardDebt?: string;
   personalLoans?: string;
   otherLiabilities?: string;
-  
+
   // Asset Locations
   assetCountries?: string[];
-  
+
   // Financial Knowledge & Preferences
-  financialKnowledge?: 'beginner' | 'intermediate' | 'advanced';
+  financialKnowledge?: "beginner" | "intermediate" | "advanced";
   financialGoals?: string[];
-  investmentTimeframe?: 'short' | 'medium' | 'long';
-  riskTolerance?: 'low' | 'medium' | 'high';
-  emergencyFund?: 'yes' | 'no' | 'partial';
-  
+  investmentTimeframe?: "short" | "medium" | "long";
+  riskTolerance?: "low" | "medium" | "high";
+  emergencyFund?: "yes" | "no" | "partial";
+
   // Progress tracking
   currentStep: number;
   completedSteps: number[];
@@ -56,6 +56,8 @@ export interface OnboardingData {
 
 interface OnboardingStore {
   data: OnboardingData;
+  hydrated: boolean;
+  setHydrated: (hydrated: boolean) => void;
   updateData: (updates: Partial<OnboardingData>) => void;
   setStep: (step: number) => void;
   completeStep: (step: number) => void;
@@ -63,11 +65,11 @@ interface OnboardingStore {
 }
 
 const initialData: OnboardingData = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  timeZone: '',
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  timeZone: "",
   agree: false,
   userId: undefined,
   currentStep: 1,
@@ -78,6 +80,8 @@ export const useOnboardingStore = create<OnboardingStore>()(
   persist(
     (set) => ({
       data: initialData,
+      hydrated: false,
+      setHydrated: (hydrated) => set({ hydrated }),
       updateData: (updates) =>
         set((state) => ({
           data: { ...state.data, ...updates },
@@ -96,7 +100,10 @@ export const useOnboardingStore = create<OnboardingStore>()(
       reset: () => set({ data: initialData }),
     }),
     {
-      name: 'onboarding-storage',
-    }
-  )
+      name: "onboarding-storage",
+      onRehydrateStorage: () => (state) => {
+        state?.setHydrated(true);
+      },
+    },
+  ),
 );

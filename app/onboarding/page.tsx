@@ -51,7 +51,7 @@ function ProgressIndicator() {
 function OnboardingContent() {
   const searchParams = useSearchParams();
   const step = searchParams.get("step");
-  const { setStep } = useOnboardingStore();
+  const { setStep, hydrated } = useOnboardingStore();
 
   useEffect(() => {
     const stepNum = parseInt(step || "1");
@@ -61,6 +61,17 @@ function OnboardingContent() {
   }, [step, setStep]);
 
   const currentStep = parseInt(step || "1");
+
+  if (!hydrated) {
+    return (
+      <div className="min-h-screen bg-[#f4f3f2] flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="mx-auto h-8 w-8 animate-spin text-[#1B1856] mb-4" />
+          <p className="text-neutral-700">Loading onboarding...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50">
